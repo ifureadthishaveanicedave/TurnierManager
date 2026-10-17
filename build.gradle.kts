@@ -1,19 +1,26 @@
 plugins {
-    id("java")
+    java
+    application
 }
 
-group = "org.example"
-version = "1.0-SNAPSHOT"
+application {
+    mainClass.set("de.dhbw.turniermanager.infrastructure.cli.Main")
+}
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    testImplementation(platform("org.junit:junit-bom:5.10.0"))
-    testImplementation("org.junit.jupiter:junit-jupiter")
+    testImplementation("org.junit.jupiter:junit-jupiter:5.10.0")
+    testImplementation("org.assertj:assertj-core:3.24.2")
+    implementation("com.fasterxml.jackson.core:jackson-databind:2.15.2")
 }
 
-tasks.test {
+tasks.withType<Test> {
     useJUnitPlatform()
+}
+
+tasks.withType<JavaCompile> {
+    options.encoding = "UTF-8"
 }
