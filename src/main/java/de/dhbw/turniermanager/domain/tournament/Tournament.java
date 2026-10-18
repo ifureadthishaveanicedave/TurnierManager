@@ -1,7 +1,10 @@
 package de.dhbw.turniermanager.domain.tournament;
 
 public class Tournament {
-    private final String name;
+    private String name;
+
+    // Konstruktor für JSON-Deserialisierung
+    public Tournament() {}
 
     public Tournament(String name) {
         this.name = name;
