@@ -1,5 +1,6 @@
 package de.dhbw.turniermanager.infrastructure.cli;
 
+import de.dhbw.turniermanager.adapters.controller.EnrollFighterController;
 import de.dhbw.turniermanager.adapters.controller.FighterController;
 import de.dhbw.turniermanager.adapters.controller.TournamentController;
 import java.util.Scanner;
@@ -8,10 +9,14 @@ public class ConsoleRouter {
     private final TournamentController tournamentController;
     private final Scanner scanner;
     private final FighterController fighterController;
+    private final EnrollFighterController enrollFighterController;
 
-    public ConsoleRouter(TournamentController tournamentController, FighterController fighterController) {
+    public ConsoleRouter(TournamentController tournamentController,
+                         FighterController fighterController,
+                         EnrollFighterController enrollFighterController) {
         this.tournamentController = tournamentController;
         this.fighterController = fighterController;
+        this.enrollFighterController = enrollFighterController;
         this.scanner = new Scanner(System.in);
     }
 
@@ -21,7 +26,8 @@ public class ConsoleRouter {
             System.out.println("\n=== Kampfsport-Turnier-Manager ===");
             System.out.println("[1] Neues Turnier erstellen");
             System.out.println("[2] Neuen Kämpfer registrieren");
-            System.out.println("[3] Beenden");
+            System.out.println("[3] Kämpfer zu Turnier hinzufügen");
+            System.out.println("[4] Beenden");
             System.out.print("Eingabe: ");
 
             String input = scanner.nextLine();
@@ -40,6 +46,13 @@ public class ConsoleRouter {
                     fighterController.handleAddFighter(fighterName, dojo);
                     break;
                 case "3":
+                    System.out.print("Name des Turniers: ");
+                    String tName = scanner.nextLine();
+                    System.out.print("Name des Kämpfers: ");
+                    String fName = scanner.nextLine();
+                    enrollFighterController.handleEnrollFighter(tName, fName);
+                    break;
+                case "4":
                     running = false;
                     System.out.println("Programm wird beendet.");
                     break;

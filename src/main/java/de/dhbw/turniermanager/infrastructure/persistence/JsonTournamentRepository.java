@@ -42,4 +42,16 @@ public class JsonTournamentRepository implements TournamentRepository {
             return new ArrayList<>();
         }
     }
+
+    @Override
+    public void update(Tournament updatedTournament) {
+        List<Tournament> tournaments = findAll();
+        tournaments.removeIf(t -> t.getName().equals(updatedTournament.getName()));
+        tournaments.add(updatedTournament);
+        try {
+            objectMapper.writeValue(file, tournaments);
+        } catch (IOException e) {
+            System.err.println("[Systemfehler] Update fehlgeschlagen: " + e.getMessage());
+        }
+    }
 }

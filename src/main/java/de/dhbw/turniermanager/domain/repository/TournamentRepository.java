@@ -6,4 +6,5 @@ import java.util.List;
 public interface TournamentRepository {
     void save(Tournament tournament);
     List<Tournament> findAll();
+    void update(Tournament updatedTournament);
 }

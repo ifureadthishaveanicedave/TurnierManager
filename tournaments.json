@@ -1,1 +1,1 @@
-[{"name":"test"},{"name":"zzztest"}]
+[{"name":"test","registeredFighters":[]},{"name":"zzztest","registeredFighters":[]},{"name":"test","registeredFighters":[]},{"name":"FirstContact","registeredFighters":["David"]}]
