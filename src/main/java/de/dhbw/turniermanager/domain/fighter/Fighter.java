@@ -1,8 +1,10 @@
 package de.dhbw.turniermanager.domain.fighter;
 
 public class Fighter {
-    private final String name;
-    private final String dojo;
+    private String name;
+    private String dojo;
+
+    public Fighter() {}
 
     public Fighter(String name, String dojo) {
         this.name = name;
