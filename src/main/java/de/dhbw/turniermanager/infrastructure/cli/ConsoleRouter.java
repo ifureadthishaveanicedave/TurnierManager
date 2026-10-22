@@ -1,9 +1,6 @@
 package de.dhbw.turniermanager.infrastructure.cli;
 
-import de.dhbw.turniermanager.adapters.controller.EnrollFighterController;
-import de.dhbw.turniermanager.adapters.controller.FighterController;
-import de.dhbw.turniermanager.adapters.controller.TournamentController;
-import de.dhbw.turniermanager.adapters.controller.ViewTournamentController;
+import de.dhbw.turniermanager.adapters.controller.*;
 
 import java.util.Scanner;
 
@@ -13,16 +10,19 @@ public class ConsoleRouter {
     private final FighterController fighterController;
     private final EnrollFighterController enrollFighterController;
     private final ViewTournamentController viewTournamentController;
+    private final GenerateMatchesController generateMatchesController;
 
     public ConsoleRouter(TournamentController tournamentController,
                          FighterController fighterController,
                          EnrollFighterController enrollFighterController,
-                         ViewTournamentController viewTournamentController) {
+                         ViewTournamentController viewTournamentController,
+                         GenerateMatchesController generateMatchesController) {
         this.tournamentController = tournamentController;
         this.fighterController = fighterController;
         this.enrollFighterController = enrollFighterController;
-        this.scanner = new Scanner(System.in);
         this.viewTournamentController = viewTournamentController;
+        this.generateMatchesController = generateMatchesController;
+        this.scanner = new Scanner(System.in);
     }
 
     public void start() {
@@ -33,7 +33,8 @@ public class ConsoleRouter {
             System.out.println("[2] Neuen Kämpfer registrieren");
             System.out.println("[3] Kämpfer zu Turnier hinzufügen");
             System.out.println("[4] Turnierdetails anzeigen");
-            System.out.println("[5] Beenden");
+            System.out.println("[5] Turnier starten");
+            System.out.println("[6] Beenden");
             System.out.print("Eingabe: ");
 
             String input = scanner.nextLine();
@@ -64,6 +65,11 @@ public class ConsoleRouter {
                     viewTournamentController.handleViewTournament(viewName);
                     break;
                 case "5":
+                    System.out.print("Name des Turniers: ");
+                    String matchTournamentName = scanner.nextLine();
+                    generateMatchesController.handleGenerateMatches(matchTournamentName);
+                    break;
+                case "6":
                     running = false;
                     System.out.println("Programm wird beendet.");
                     break;

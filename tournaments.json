@@ -1,1 +1,1 @@
-[{"name":"test","registeredFighters":[]},{"name":"zzztest","registeredFighters":[]},{"name":"test","registeredFighters":[]},{"name":"FirstContact","registeredFighters":["David"]}]
+[{"name":"test","registeredFighters":[],"matches":[]},{"name":"zzztest","registeredFighters":[],"matches":[]},{"name":"test","registeredFighters":[],"matches":[]},{"name":"FirstContact","registeredFighters":["David"],"matches":[{"fighter1":"David","fighter2":"Freilos","winner":null}]}]
