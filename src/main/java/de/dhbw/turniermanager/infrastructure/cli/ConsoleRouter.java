@@ -11,17 +11,20 @@ public class ConsoleRouter {
     private final EnrollFighterController enrollFighterController;
     private final ViewTournamentController viewTournamentController;
     private final GenerateMatchesController generateMatchesController;
+    private final TournamentExecutionRouter tournamentExecutionRouter;
 
     public ConsoleRouter(TournamentController tournamentController,
                          FighterController fighterController,
                          EnrollFighterController enrollFighterController,
                          ViewTournamentController viewTournamentController,
-                         GenerateMatchesController generateMatchesController) {
+                         GenerateMatchesController generateMatchesController,
+                         TournamentExecutionRouter tournamentExecutionRouter) {
         this.tournamentController = tournamentController;
         this.fighterController = fighterController;
         this.enrollFighterController = enrollFighterController;
         this.viewTournamentController = viewTournamentController;
         this.generateMatchesController = generateMatchesController;
+        this.tournamentExecutionRouter = tournamentExecutionRouter;
         this.scanner = new Scanner(System.in);
     }
 
@@ -68,6 +71,7 @@ public class ConsoleRouter {
                     System.out.print("Name des Turniers: ");
                     String matchTournamentName = scanner.nextLine();
                     generateMatchesController.handleGenerateMatches(matchTournamentName);
+                    tournamentExecutionRouter.startExecutionMode(matchTournamentName);
                     break;
                 case "6":
                     running = false;

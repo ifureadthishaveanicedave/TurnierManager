@@ -15,5 +15,9 @@ public class Match {
 
     public String getFighter1() { return fighter1; }
     public String getFighter2() { return fighter2; }
+
     public String getWinner() { return winner; }
+    public void setWinner(String winner) {
+        this.winner = winner;
+    }
 }

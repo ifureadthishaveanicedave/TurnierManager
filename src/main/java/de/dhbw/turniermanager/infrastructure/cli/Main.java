@@ -21,6 +21,7 @@ public class Main {
         EnrollFighterOutputBoundary enrollPresenter = new ConsoleEnrollFighterPresenter();
         ViewTournamentOutputBoundary viewPresenter = new ConsoleViewTournamentPresenter();
         GenerateMatchesOutputBoundary matchPresenter = new ConsoleGenerateMatchesPresenter();
+        RecordMatchResultOutputBoundary recordPresenter = new ConsoleRecordMatchResultPresenter();
 
         // 3. Use-Cases
         TournamentInputBoundary tournamentUseCase = new CreateTournamentUseCase(tournamentPresenter, tournamentRepo);
@@ -28,16 +29,23 @@ public class Main {
         EnrollFighterInputBoundary enrollUseCase = new EnrollFighterUseCase(enrollPresenter, tournamentRepo, fighterRepo);
         ViewTournamentInputBoundary viewUseCase = new ViewTournamentUseCase(viewPresenter, tournamentRepo);
         GenerateMatchesInputBoundary matchUseCase = new GenerateMatchesUseCase(matchPresenter, tournamentRepo);
+        RecordMatchResultInputBoundary recordUseCase = new RecordMatchResultUseCase(recordPresenter, tournamentRepo);
 
+        // 4. Controller
         // 4. Controller
         TournamentController tournamentController = new TournamentController(tournamentUseCase);
         FighterController fighterController = new FighterController(fighterUseCase);
         EnrollFighterController enrollController = new EnrollFighterController(enrollUseCase);
         ViewTournamentController viewController = new ViewTournamentController(viewUseCase);
         GenerateMatchesController matchController = new GenerateMatchesController(matchUseCase);
+        RecordMatchResultController recordController = new RecordMatchResultController(recordUseCase);
 
         // 5. Router
-        ConsoleRouter router = new ConsoleRouter(tournamentController, fighterController, enrollController, viewController, matchController);
+        TournamentExecutionRouter executionRouter = new TournamentExecutionRouter(recordController);
+        ConsoleRouter router = new ConsoleRouter(
+                tournamentController, fighterController, enrollController,
+                viewController, matchController, executionRouter
+        );
         router.start();
     }
 }

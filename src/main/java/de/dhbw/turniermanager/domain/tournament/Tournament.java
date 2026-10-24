@@ -48,4 +48,14 @@ public class Tournament {
             this.matches.add(new Match(f1, f2));
         }
     }
+    public void resolveMatch(int matchIndex, String winnerName) {
+        if (matchIndex < 0 || matchIndex >= this.matches.size()) {
+            throw new IllegalArgumentException("Ungültige Kampf-Nummer.");
+        }
+        Match match = this.matches.get(matchIndex);
+        if (!match.getFighter1().equals(winnerName) && !match.getFighter2().equals(winnerName)) {
+            throw new IllegalArgumentException("Der Gewinner muss einer der beiden Kämpfer sein.");
+        }
+        match.setWinner(winnerName);
+    }
 }
