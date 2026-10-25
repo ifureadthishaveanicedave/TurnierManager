@@ -58,4 +58,28 @@ public class Tournament {
         }
         match.setWinner(winnerName);
     }
+    public void advanceToNextRound() {
+        if (this.matches.isEmpty()) {
+            throw new IllegalStateException("Es gibt noch keine aktiven Kämpfe.");
+        }
+
+        List<String> winners = new ArrayList<>();
+        for (Match match : this.matches) {
+            if (match.getWinner() == null) {
+                throw new IllegalStateException("Es sind noch nicht alle Kämpfe dieser Runde beendet.");
+            }
+            winners.add(match.getWinner());
+        }
+
+        if (winners.size() == 1) {
+            throw new IllegalStateException("Das Turnier ist beendet! Der Gesamtsieger ist: " + winners.get(0));
+        }
+
+        this.matches.clear();
+        for (int i = 0; i < winners.size(); i += 2) {
+            String f1 = winners.get(i);
+            String f2 = (i + 1 < winners.size()) ? winners.get(i + 1) : "Freilos";
+            this.matches.add(new Match(f1, f2));
+        }
+    }
 }

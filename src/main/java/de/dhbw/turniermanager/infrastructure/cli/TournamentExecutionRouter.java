@@ -1,14 +1,18 @@
 package de.dhbw.turniermanager.infrastructure.cli;
 
+import de.dhbw.turniermanager.adapters.controller.AdvanceRoundController;
 import de.dhbw.turniermanager.adapters.controller.RecordMatchResultController;
 import java.util.Scanner;
 
 public class TournamentExecutionRouter {
     private final RecordMatchResultController recordMatchResultController;
+    private final AdvanceRoundController advanceRoundController;
     private final Scanner scanner;
 
-    public TournamentExecutionRouter(RecordMatchResultController recordMatchResultController) {
+    public TournamentExecutionRouter(RecordMatchResultController recordMatchResultController,
+                                     AdvanceRoundController advanceRoundController) {
         this.recordMatchResultController = recordMatchResultController;
+        this.advanceRoundController = advanceRoundController;
         this.scanner = new Scanner(System.in);
     }
 
@@ -17,7 +21,8 @@ public class TournamentExecutionRouter {
         while (running) {
             System.out.println("\n=== TURNIER-MODUS: " + tournamentName.toUpperCase() + " ===");
             System.out.println("[1] Ergebnis eintragen");
-            System.out.println("[2] Zurück zum Hauptmenü");
+            System.out.println("[2] Nächste Runde generieren");
+            System.out.println("[3] Zurück zum Hauptmenü");
             System.out.print("Eingabe: ");
 
             String input = scanner.nextLine();
@@ -31,6 +36,9 @@ public class TournamentExecutionRouter {
                     recordMatchResultController.handleRecordResult(tournamentName, matchNum, winnerName);
                     break;
                 case "2":
+                    advanceRoundController.handleAdvanceRound(tournamentName);
+                    break;
+                case "3":
                     running = false;
                     System.out.println("Turnier-Modus wird beendet...");
                     break;
