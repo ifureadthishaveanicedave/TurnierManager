@@ -7,4 +7,5 @@ public interface TournamentRepository {
     void save(Tournament tournament);
     List<Tournament> findAll();
     void update(Tournament updatedTournament);
+    void delete(String tournamentName);
 }

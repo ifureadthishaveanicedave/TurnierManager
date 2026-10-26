@@ -54,4 +54,17 @@ public class JsonTournamentRepository implements TournamentRepository {
             System.err.println("[Systemfehler] Update fehlgeschlagen: " + e.getMessage());
         }
     }
+    @Override
+    public void delete(String tournamentName) {
+        List<Tournament> tournaments = findAll();
+        boolean removed = tournaments.removeIf(t -> t.getName().equals(tournamentName));
+
+        if (removed) {
+            try {
+                objectMapper.writeValue(file, tournaments);
+            } catch (IOException e) {
+                System.err.println("[Systemfehler] Löschen fehlgeschlagen: " + e.getMessage());
+            }
+        }
+    }
 }

@@ -12,19 +12,22 @@ public class ConsoleRouter {
     private final ViewTournamentController viewTournamentController;
     private final GenerateMatchesController generateMatchesController;
     private final TournamentExecutionRouter tournamentExecutionRouter;
+    private final DeleteTournamentController deleteTournamentController;
 
     public ConsoleRouter(TournamentController tournamentController,
                          FighterController fighterController,
                          EnrollFighterController enrollFighterController,
                          ViewTournamentController viewTournamentController,
                          GenerateMatchesController generateMatchesController,
-                         TournamentExecutionRouter tournamentExecutionRouter) {
+                         TournamentExecutionRouter tournamentExecutionRouter,
+                         DeleteTournamentController deleteTournamentController) {
         this.tournamentController = tournamentController;
         this.fighterController = fighterController;
         this.enrollFighterController = enrollFighterController;
         this.viewTournamentController = viewTournamentController;
         this.generateMatchesController = generateMatchesController;
         this.tournamentExecutionRouter = tournamentExecutionRouter;
+        this.deleteTournamentController = deleteTournamentController;
         this.scanner = new Scanner(System.in);
     }
 
@@ -37,7 +40,8 @@ public class ConsoleRouter {
             System.out.println("[3] Kämpfer zu Turnier hinzufügen");
             System.out.println("[4] Turnierdetails anzeigen");
             System.out.println("[5] Turnier starten");
-            System.out.println("[6] Beenden");
+            System.out.println("[6] Turnier löschen");
+            System.out.println("[7] Beenden");
             System.out.print("Eingabe: ");
 
             String input = scanner.nextLine();
@@ -74,6 +78,11 @@ public class ConsoleRouter {
                     tournamentExecutionRouter.startExecutionMode(matchTournamentName);
                     break;
                 case "6":
+                    System.out.print("Name des zu löschenden Turniers: ");
+                    String deleteName = scanner.nextLine();
+                    deleteTournamentController.handleDeleteTournament(deleteName);
+                    break;
+                case "7":
                     running = false;
                     System.out.println("Programm wird beendet.");
                     break;

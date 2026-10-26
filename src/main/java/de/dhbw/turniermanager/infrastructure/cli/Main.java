@@ -25,6 +25,7 @@ public class Main {
         AdvanceRoundOutputBoundary advancePresenter = new ConsoleAdvanceRoundPresenter();
         ViewMatchesOutputBoundary viewMatchesPresenter = new ConsoleViewMatchesPresenter();
         ViewBracketOutputBoundary bracketPresenter = new ConsoleViewBracketPresenter();
+        DeleteTournamentOutputBoundary deletePresenter = new ConsoleDeleteTournamentPresenter();
 
         // 3. Use-Cases
         TournamentInputBoundary tournamentUseCase = new CreateTournamentUseCase(tournamentPresenter, tournamentRepo);
@@ -36,6 +37,7 @@ public class Main {
         AdvanceRoundInputBoundary advanceUseCase = new AdvanceRoundUseCase(advancePresenter, tournamentRepo);
         ViewMatchesInputBoundary viewMatchesUseCase = new ViewMatchesUseCase(viewMatchesPresenter, tournamentRepo);
         ViewBracketInputBoundary bracketUseCase = new ViewBracketUseCase(bracketPresenter, tournamentRepo);
+        DeleteTournamentInputBoundary deleteUseCase = new DeleteTournamentUseCase(deletePresenter, tournamentRepo);
 
         // 4. Controller
         TournamentController tournamentController = new TournamentController(tournamentUseCase);
@@ -47,6 +49,7 @@ public class Main {
         AdvanceRoundController advanceController = new AdvanceRoundController(advanceUseCase);
         ViewMatchesController viewMatchesController = new ViewMatchesController(viewMatchesUseCase);
         ViewBracketController bracketController = new ViewBracketController(bracketUseCase);
+        DeleteTournamentController deleteController = new DeleteTournamentController(deleteUseCase);
 
         // 5. Router
         TournamentExecutionRouter executionRouter = new TournamentExecutionRouter(
@@ -54,7 +57,7 @@ public class Main {
         );
         ConsoleRouter router = new ConsoleRouter(
                 tournamentController, fighterController, enrollController,
-                viewController, matchController, executionRouter
+                viewController, matchController, executionRouter, deleteController
         );
         router.start();
     }
