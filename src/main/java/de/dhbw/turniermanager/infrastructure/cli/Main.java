@@ -24,6 +24,7 @@ public class Main {
         RecordMatchResultOutputBoundary recordPresenter = new ConsoleRecordMatchResultPresenter();
         AdvanceRoundOutputBoundary advancePresenter = new ConsoleAdvanceRoundPresenter();
         ViewMatchesOutputBoundary viewMatchesPresenter = new ConsoleViewMatchesPresenter();
+        ViewBracketOutputBoundary bracketPresenter = new ConsoleViewBracketPresenter();
 
         // 3. Use-Cases
         TournamentInputBoundary tournamentUseCase = new CreateTournamentUseCase(tournamentPresenter, tournamentRepo);
@@ -34,6 +35,7 @@ public class Main {
         RecordMatchResultInputBoundary recordUseCase = new RecordMatchResultUseCase(recordPresenter, tournamentRepo);
         AdvanceRoundInputBoundary advanceUseCase = new AdvanceRoundUseCase(advancePresenter, tournamentRepo);
         ViewMatchesInputBoundary viewMatchesUseCase = new ViewMatchesUseCase(viewMatchesPresenter, tournamentRepo);
+        ViewBracketInputBoundary bracketUseCase = new ViewBracketUseCase(bracketPresenter, tournamentRepo);
 
         // 4. Controller
         TournamentController tournamentController = new TournamentController(tournamentUseCase);
@@ -44,10 +46,11 @@ public class Main {
         RecordMatchResultController recordController = new RecordMatchResultController(recordUseCase);
         AdvanceRoundController advanceController = new AdvanceRoundController(advanceUseCase);
         ViewMatchesController viewMatchesController = new ViewMatchesController(viewMatchesUseCase);
+        ViewBracketController bracketController = new ViewBracketController(bracketUseCase);
 
         // 5. Router
         TournamentExecutionRouter executionRouter = new TournamentExecutionRouter(
-                recordController, advanceController, viewMatchesController
+                recordController, advanceController, viewMatchesController, bracketController
         );
         ConsoleRouter router = new ConsoleRouter(
                 tournamentController, fighterController, enrollController,

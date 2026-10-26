@@ -8,10 +8,12 @@ public class Tournament {
     private String name;
     private List<String> registeredFighters;
     private List<Match> matches;
+    private List<List<Match>> previousRounds;
 
     public Tournament() {
         this.registeredFighters = new ArrayList<>();
         this.matches = new ArrayList<>();
+        this.previousRounds = new ArrayList<>();
     }
 
     public Tournament(String name) {
@@ -58,6 +60,7 @@ public class Tournament {
         }
         match.setWinner(winnerName);
     }
+
     public void advanceToNextRound() {
         if (this.matches.isEmpty()) {
             throw new IllegalStateException("Es gibt noch keine aktiven Kämpfe.");
@@ -75,11 +78,16 @@ public class Tournament {
             throw new IllegalStateException("Das Turnier ist beendet! Der Gesamtsieger ist: " + winners.get(0));
         }
 
+        this.previousRounds.add(new ArrayList<>(this.matches));
         this.matches.clear();
+
         for (int i = 0; i < winners.size(); i += 2) {
             String f1 = winners.get(i);
             String f2 = (i + 1 < winners.size()) ? winners.get(i + 1) : "Freilos";
             this.matches.add(new Match(f1, f2));
         }
+    }
+    public List<List<Match>> getPreviousRounds() {
+        return previousRounds;
     }
 }
