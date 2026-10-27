@@ -12,19 +12,22 @@ public class ConsoleRouter {
     private final ViewTournamentController viewTournamentController;
     private final TournamentExecutionRouter tournamentExecutionRouter;
     private final DeleteTournamentController deleteTournamentController;
+    private final TournamentQueryController tournamentQueryController;
 
     public ConsoleRouter(TournamentController tournamentController,
                          FighterController fighterController,
                          EnrollFighterController enrollFighterController,
                          ViewTournamentController viewTournamentController,
                          TournamentExecutionRouter tournamentExecutionRouter,
-                         DeleteTournamentController deleteTournamentController) {
+                         DeleteTournamentController deleteTournamentController,
+                         TournamentQueryController tournamentQueryController) {
         this.tournamentController = tournamentController;
         this.fighterController = fighterController;
         this.enrollFighterController = enrollFighterController;
         this.viewTournamentController = viewTournamentController;
         this.tournamentExecutionRouter = tournamentExecutionRouter;
         this.deleteTournamentController = deleteTournamentController;
+        this.tournamentQueryController = tournamentQueryController;
         this.scanner = new Scanner(System.in);
     }
 
@@ -71,7 +74,11 @@ public class ConsoleRouter {
                 case "5":
                     System.out.print("Name des Turniers: ");
                     String openTournamentName = scanner.nextLine();
-                    tournamentExecutionRouter.startExecutionMode(openTournamentName);
+                    if (tournamentQueryController.checkTournamentExists(openTournamentName)) {
+                        tournamentExecutionRouter.startExecutionMode(openTournamentName);
+                    } else {
+                        System.out.println("Das Turnier '" + openTournamentName + "' existiert nicht. Bitte erstelle es zuerst.");
+                    }
                     break;
                 case "6":
                     System.out.print("Name des zu löschenden Turniers: ");

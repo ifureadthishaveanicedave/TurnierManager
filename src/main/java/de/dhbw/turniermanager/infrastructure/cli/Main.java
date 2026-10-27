@@ -38,6 +38,7 @@ public class Main {
         ViewMatchesInputBoundary viewMatchesUseCase = new ViewMatchesUseCase(viewMatchesPresenter, tournamentRepo);
         ViewBracketInputBoundary bracketUseCase = new ViewBracketUseCase(bracketPresenter, tournamentRepo);
         DeleteTournamentInputBoundary deleteUseCase = new DeleteTournamentUseCase(deletePresenter, tournamentRepo);
+        TournamentQueryUseCase queryUseCase = new TournamentQueryUseCase(tournamentRepo);
 
         // 4. Controller
         TournamentController tournamentController = new TournamentController(tournamentUseCase);
@@ -50,6 +51,8 @@ public class Main {
         ViewMatchesController viewMatchesController = new ViewMatchesController(viewMatchesUseCase);
         ViewBracketController bracketController = new ViewBracketController(bracketUseCase);
         DeleteTournamentController deleteController = new DeleteTournamentController(deleteUseCase);
+        TournamentQueryController queryController = new TournamentQueryController(queryUseCase);
+
 
         // 5. Router
         TournamentExecutionRouter executionRouter = new TournamentExecutionRouter(
@@ -57,7 +60,7 @@ public class Main {
         );
         ConsoleRouter router = new ConsoleRouter(
                 tournamentController, fighterController, enrollController,
-                viewController, executionRouter, deleteController
+                viewController, executionRouter, deleteController, queryController
         );
         router.start();
     }
