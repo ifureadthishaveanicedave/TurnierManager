@@ -41,11 +41,13 @@ public class Tournament {
     }
 
     public void generateMatches() {
+        if (!this.matches.isEmpty() || !this.previousRounds.isEmpty()) {
+            throw new IllegalStateException("Das Turnier hat bereits begonnen. Aktuelle Kämpfe können nicht überschrieben werden.");
+        }
+
         this.matches.clear();
-        // Einfache sequenzielle Paarung (1vs2, 3vs4)
         for (int i = 0; i < registeredFighters.size(); i += 2) {
             String f1 = registeredFighters.get(i);
-            // Bei ungerader Anzahl bekommt der letzte Kämpfer ein Freilos (Bye)
             String f2 = (i + 1 < registeredFighters.size()) ? registeredFighters.get(i + 1) : "Freilos";
             this.matches.add(new Match(f1, f2));
         }

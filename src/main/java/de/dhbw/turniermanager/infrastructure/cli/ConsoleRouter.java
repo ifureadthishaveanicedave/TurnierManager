@@ -10,7 +10,6 @@ public class ConsoleRouter {
     private final FighterController fighterController;
     private final EnrollFighterController enrollFighterController;
     private final ViewTournamentController viewTournamentController;
-    private final GenerateMatchesController generateMatchesController;
     private final TournamentExecutionRouter tournamentExecutionRouter;
     private final DeleteTournamentController deleteTournamentController;
 
@@ -18,14 +17,12 @@ public class ConsoleRouter {
                          FighterController fighterController,
                          EnrollFighterController enrollFighterController,
                          ViewTournamentController viewTournamentController,
-                         GenerateMatchesController generateMatchesController,
                          TournamentExecutionRouter tournamentExecutionRouter,
                          DeleteTournamentController deleteTournamentController) {
         this.tournamentController = tournamentController;
         this.fighterController = fighterController;
         this.enrollFighterController = enrollFighterController;
         this.viewTournamentController = viewTournamentController;
-        this.generateMatchesController = generateMatchesController;
         this.tournamentExecutionRouter = tournamentExecutionRouter;
         this.deleteTournamentController = deleteTournamentController;
         this.scanner = new Scanner(System.in);
@@ -39,7 +36,7 @@ public class ConsoleRouter {
             System.out.println("[2] Neuen Kämpfer registrieren");
             System.out.println("[3] Kämpfer zu Turnier hinzufügen");
             System.out.println("[4] Turnierdetails anzeigen");
-            System.out.println("[5] Turnier starten");
+            System.out.println("[5] Turnier öffnen");
             System.out.println("[6] Turnier löschen");
             System.out.println("[7] Beenden");
             System.out.print("Eingabe: ");
@@ -73,9 +70,8 @@ public class ConsoleRouter {
                     break;
                 case "5":
                     System.out.print("Name des Turniers: ");
-                    String matchTournamentName = scanner.nextLine();
-                    generateMatchesController.handleGenerateMatches(matchTournamentName);
-                    tournamentExecutionRouter.startExecutionMode(matchTournamentName);
+                    String openTournamentName = scanner.nextLine();
+                    tournamentExecutionRouter.startExecutionMode(openTournamentName);
                     break;
                 case "6":
                     System.out.print("Name des zu löschenden Turniers: ");

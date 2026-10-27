@@ -1,9 +1,6 @@
 package de.dhbw.turniermanager.infrastructure.cli;
 
-import de.dhbw.turniermanager.adapters.controller.AdvanceRoundController;
-import de.dhbw.turniermanager.adapters.controller.RecordMatchResultController;
-import de.dhbw.turniermanager.adapters.controller.ViewBracketController;
-import de.dhbw.turniermanager.adapters.controller.ViewMatchesController;
+import de.dhbw.turniermanager.adapters.controller.*;
 
 import java.util.Scanner;
 
@@ -12,16 +9,19 @@ public class TournamentExecutionRouter {
     private final AdvanceRoundController advanceRoundController;
     private final ViewMatchesController viewMatchesController;
     private final ViewBracketController viewBracketController;
+    private final GenerateMatchesController generateMatchesController;
     private final Scanner scanner;
 
     public TournamentExecutionRouter(RecordMatchResultController recordMatchResultController,
                                      AdvanceRoundController advanceRoundController,
                                      ViewMatchesController viewMatchesController,
-                                     ViewBracketController viewBracketController){
+                                     ViewBracketController viewBracketController,
+                                     GenerateMatchesController generateMatchesController) {
         this.recordMatchResultController = recordMatchResultController;
         this.advanceRoundController = advanceRoundController;
         this.viewMatchesController = viewMatchesController;
         this.viewBracketController = viewBracketController;
+        this.generateMatchesController = generateMatchesController;
         this.scanner = new Scanner(System.in);
     }
 
@@ -31,10 +31,10 @@ public class TournamentExecutionRouter {
             System.out.println("\n=== TURNIER-MODUS: " + tournamentName.toUpperCase() + " ===");
             System.out.println("[1] Aktuelle Kämpfe anzeigen");
             System.out.println("[2] Ergebnis eintragen");
-            System.out.println("[3] Nächste Runde generieren");
-            System.out.println("[4] Gesamten Turnierbaum anzeigen");
-            System.out.println("[5] Zurück zum Hauptmenü");
-            System.out.print("Eingabe: ");
+            System.out.println("[3] Startaufstellung generieren (1. Runde)"); // NEU
+            System.out.println("[4] Nächste Runde generieren");
+            System.out.println("[5] Gesamten Turnierbaum anzeigen");
+            System.out.println("[6] Zurück zum Hauptmenü");
 
             String input = scanner.nextLine();
 
@@ -49,13 +49,16 @@ public class TournamentExecutionRouter {
                     String winnerName = scanner.nextLine();
                     recordMatchResultController.handleRecordResult(tournamentName, matchNum, winnerName);
                     break;
-                case "3":
-                    advanceRoundController.handleAdvanceRound(tournamentName);
+                case "3": // NEU
+                    generateMatchesController.handleGenerateMatches(tournamentName);
                     break;
                 case "4":
-                    viewBracketController.handleViewBracket(tournamentName);
+                    advanceRoundController.handleAdvanceRound(tournamentName);
                     break;
                 case "5":
+                    viewBracketController.handleViewBracket(tournamentName);
+                    break;
+                case "6":
                     running = false;
                     System.out.println("Turnier-Modus wird beendet...");
                     break;

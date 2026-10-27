@@ -31,10 +31,13 @@ public class GenerateMatchesUseCase implements GenerateMatchesInputBoundary {
             return;
         }
 
-        tournament.generateMatches();
-
-        tournamentRepo.update(tournament);
-
-        outputBoundary.presentMatches(tournament.getName(), tournament.getMatches());
+        try {
+            tournament.generateMatches();
+            tournamentRepo.update(tournament);
+            outputBoundary.presentMatches(tournament.getName(), tournament.getMatches());
+        } catch (IllegalStateException e) {
+            outputBoundary.presentError(e.getMessage());
+        }
     }
 }
+
