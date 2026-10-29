@@ -11,6 +11,6 @@ public class ConsoleAdvanceRoundPresenter implements AdvanceRoundOutputBoundary 
 
     @Override
     public void presentError(String errorMessage) {
-        System.out.println("\n[FEHLER] " + errorMessage);
+        System.out.println("\n" + errorMessage);
     }
 }

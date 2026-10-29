@@ -17,6 +17,6 @@ public class ConsoleGenerateMatchesPresenter implements GenerateMatchesOutputBou
 
     @Override
     public void presentError(String errorMessage) {
-        System.out.println("\n[FEHLER] " + errorMessage);
+        System.out.println("\n" + errorMessage);
     }
 }

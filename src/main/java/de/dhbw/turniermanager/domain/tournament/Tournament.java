@@ -8,7 +8,7 @@ public class Tournament {
     private String name;
     private List<String> registeredFighters;
     private List<Match> matches;
-    private List<List<Match>> previousRounds;
+    private List<List<Match>> previousRounds = new ArrayList<>();
 
     public Tournament() {
         this.registeredFighters = new ArrayList<>();

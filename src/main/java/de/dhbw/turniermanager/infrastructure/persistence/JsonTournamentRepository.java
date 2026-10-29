@@ -26,7 +26,7 @@ public class JsonTournamentRepository implements TournamentRepository {
         try {
             objectMapper.writeValue(file, tournaments);
         } catch (IOException e) {
-            System.err.println("[Systemfehler] Speichern fehlgeschlagen: " + e.getMessage());
+            System.err.println("Speichern fehlgeschlagen: " + e.getMessage());
         }
     }
 
@@ -38,7 +38,7 @@ public class JsonTournamentRepository implements TournamentRepository {
         try {
             return objectMapper.readValue(file, new TypeReference<List<Tournament>>() {});
         } catch (IOException e) {
-            System.err.println("[Systemfehler] Lesen fehlgeschlagen: " + e.getMessage());
+            System.err.println("Lesen fehlgeschlagen: " + e.getMessage());
             return new ArrayList<>();
         }
     }
@@ -51,7 +51,7 @@ public class JsonTournamentRepository implements TournamentRepository {
         try {
             objectMapper.writeValue(file, tournaments);
         } catch (IOException e) {
-            System.err.println("[Systemfehler] Update fehlgeschlagen: " + e.getMessage());
+            System.err.println("Update fehlgeschlagen: " + e.getMessage());
         }
     }
     @Override
@@ -63,7 +63,7 @@ public class JsonTournamentRepository implements TournamentRepository {
             try {
                 objectMapper.writeValue(file, tournaments);
             } catch (IOException e) {
-                System.err.println("[Systemfehler] Löschen fehlgeschlagen: " + e.getMessage());
+                System.err.println("Löschen fehlgeschlagen: " + e.getMessage());
             }
         }
     }

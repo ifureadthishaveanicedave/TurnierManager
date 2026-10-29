@@ -10,6 +10,6 @@ public class ConsoleRecordMatchResultPresenter implements RecordMatchResultOutpu
 
     @Override
     public void presentError(String errorMessage) {
-        System.out.println("\n[FEHLER] " + errorMessage);
+        System.out.println("\n" + errorMessage);
     }
 }

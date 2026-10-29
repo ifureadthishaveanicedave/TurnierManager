@@ -10,6 +10,6 @@ public class ConsoleEnrollFighterPresenter implements EnrollFighterOutputBoundar
 
     @Override
     public void presentError(String errorMessage) {
-        System.out.println("\n[FEHLER] " + errorMessage);
+        System.out.println("\n" + errorMessage);
     }
 }

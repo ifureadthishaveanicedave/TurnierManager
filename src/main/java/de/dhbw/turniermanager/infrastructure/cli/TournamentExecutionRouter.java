@@ -31,10 +31,11 @@ public class TournamentExecutionRouter {
             System.out.println("\n=== TURNIER-MODUS: " + tournamentName.toUpperCase() + " ===");
             System.out.println("[1] Aktuelle Kämpfe anzeigen");
             System.out.println("[2] Ergebnis eintragen");
-            System.out.println("[3] Startaufstellung generieren (1. Runde)"); // NEU
+            System.out.println("[3] Startaufstellung generieren (1. Runde)");
             System.out.println("[4] Nächste Runde generieren");
             System.out.println("[5] Gesamten Turnierbaum anzeigen");
             System.out.println("[6] Zurück zum Hauptmenü");
+            System.out.print("Eingabe: ");
 
             String input = scanner.nextLine();
 
@@ -49,7 +50,7 @@ public class TournamentExecutionRouter {
                     String winnerName = scanner.nextLine();
                     recordMatchResultController.handleRecordResult(tournamentName, matchNum, winnerName);
                     break;
-                case "3": // NEU
+                case "3":
                     generateMatchesController.handleGenerateMatches(tournamentName);
                     break;
                 case "4":

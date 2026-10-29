@@ -58,9 +58,12 @@ public class Main {
         TournamentExecutionRouter executionRouter = new TournamentExecutionRouter(
                 recordController, advanceController, viewMatchesController, bracketController, matchController
         );
+        TournamentManagementRouter managementRouter = new TournamentManagementRouter(
+                enrollController, viewController, executionRouter
+        );
         ConsoleRouter router = new ConsoleRouter(
-                tournamentController, fighterController, enrollController,
-                viewController, executionRouter, deleteController, queryController
+                tournamentController, fighterController, deleteController,
+                queryController, managementRouter
         );
         router.start();
     }

@@ -11,7 +11,7 @@ public class FighterController {
 
     public void handleAddFighter(String name, String dojo) {
         if (name == null || name.trim().isEmpty() || dojo == null || dojo.trim().isEmpty()) {
-            System.out.println("[FEHLER] Name und Team dürfen nicht leer sein.");
+            System.out.println("Name und Team dürfen nicht leer sein.");
             return;
         }
         inputBoundary.addFighter(name, dojo);

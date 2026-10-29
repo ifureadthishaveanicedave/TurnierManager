@@ -10,6 +10,6 @@ public class ConsoleDeleteTournamentPresenter implements DeleteTournamentOutputB
 
     @Override
     public void presentError(String errorMessage) {
-        System.out.println("\n[FEHLER] " + errorMessage);
+        System.out.println("\n" + errorMessage);
     }
 }

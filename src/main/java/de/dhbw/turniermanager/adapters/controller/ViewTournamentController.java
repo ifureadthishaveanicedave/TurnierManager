@@ -11,7 +11,7 @@ public class ViewTournamentController {
 
     public void handleViewTournament(String tournamentName) {
         if (tournamentName == null || tournamentName.trim().isEmpty()) {
-            System.out.println("[FEHLER] Der Turniername darf nicht leer sein.");
+            System.out.println("Der Turniername darf nicht leer sein.");
             return;
         }
         inputBoundary.viewTournament(tournamentName);

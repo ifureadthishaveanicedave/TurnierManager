@@ -26,7 +26,7 @@ public class JsonFighterRepository implements FighterRepository {
         try {
             objectMapper.writeValue(file, fighters);
         } catch (IOException e) {
-            System.err.println("[Systemfehler] Kämpfer speichern fehlgeschlagen: " + e.getMessage());
+            System.err.println("Kämpfer speichern fehlgeschlagen: " + e.getMessage());
         }
     }
 
@@ -38,7 +38,7 @@ public class JsonFighterRepository implements FighterRepository {
         try {
             return objectMapper.readValue(file, new TypeReference<List<Fighter>>() {});
         } catch (IOException e) {
-            System.err.println("[Systemfehler] Kämpfer lesen fehlgeschlagen: " + e.getMessage());
+            System.err.println("Kämpfer lesen fehlgeschlagen: " + e.getMessage());
             return new ArrayList<>();
         }
     }

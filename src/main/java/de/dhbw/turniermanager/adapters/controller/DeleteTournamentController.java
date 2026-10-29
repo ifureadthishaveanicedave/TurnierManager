@@ -11,7 +11,7 @@ public class DeleteTournamentController {
 
     public void handleDeleteTournament(String tournamentName) {
         if (tournamentName == null || tournamentName.trim().isEmpty()) {
-            System.out.println("[FEHLER] Der Turniername darf nicht leer sein.");
+            System.out.println("Der Turniername darf nicht leer sein.");
             return;
         }
         inputBoundary.deleteTournament(tournamentName);
