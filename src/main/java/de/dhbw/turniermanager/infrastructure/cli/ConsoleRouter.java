@@ -9,18 +9,21 @@ public class ConsoleRouter {
     private final DeleteTournamentController deleteTournamentController;
     private final TournamentQueryController tournamentQueryController;
     private final TournamentManagementRouter tournamentManagementRouter;
+    private final ViewDojoRankingController viewDojoRankingController;
     private final Scanner scanner;
 
     public ConsoleRouter(TournamentController tournamentController,
                          FighterController fighterController,
                          DeleteTournamentController deleteTournamentController,
                          TournamentQueryController tournamentQueryController,
-                         TournamentManagementRouter tournamentManagementRouter) {
+                         TournamentManagementRouter tournamentManagementRouter,
+                         ViewDojoRankingController viewDojoRankingController) {
         this.tournamentController = tournamentController;
         this.fighterController = fighterController;
         this.deleteTournamentController = deleteTournamentController;
         this.tournamentQueryController = tournamentQueryController;
         this.tournamentManagementRouter = tournamentManagementRouter;
+        this.viewDojoRankingController = viewDojoRankingController;
         this.scanner = new Scanner(System.in);
     }
 
@@ -32,7 +35,8 @@ public class ConsoleRouter {
             System.out.println("[2] Neuen Kämpfer im System registrieren");
             System.out.println("[3] Turnier verwalten (Kämpfer hinzufügen, Details, Starten)");
             System.out.println("[4] Turnier löschen");
-            System.out.println("[5] Beenden");
+            System.out.println("[5] Globale Dojo-Rangliste anzeigen");
+            System.out.println("[6] Beenden");
             System.out.print("Eingabe: ");
 
             String input = scanner.nextLine();
@@ -65,6 +69,9 @@ public class ConsoleRouter {
                     deleteTournamentController.handleDeleteTournament(deleteName);
                     break;
                 case "5":
+                    viewDojoRankingController.handleViewGlobalRanking();
+                    break;
+                case "6":
                     running = false;
                     System.out.println("Programm wird beendet.");
                     break;

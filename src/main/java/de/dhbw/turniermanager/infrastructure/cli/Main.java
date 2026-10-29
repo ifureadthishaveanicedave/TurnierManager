@@ -26,6 +26,7 @@ public class Main {
         ViewMatchesOutputBoundary viewMatchesPresenter = new ConsoleViewMatchesPresenter();
         ViewBracketOutputBoundary bracketPresenter = new ConsoleViewBracketPresenter();
         DeleteTournamentOutputBoundary deletePresenter = new ConsoleDeleteTournamentPresenter();
+        ViewDojoRankingOutputBoundary rankingPresenter = new ConsoleViewDojoRankingPresenter();
 
         // 3. Use-Cases
         TournamentInputBoundary tournamentUseCase = new CreateTournamentUseCase(tournamentPresenter, tournamentRepo);
@@ -39,6 +40,7 @@ public class Main {
         ViewBracketInputBoundary bracketUseCase = new ViewBracketUseCase(bracketPresenter, tournamentRepo);
         DeleteTournamentInputBoundary deleteUseCase = new DeleteTournamentUseCase(deletePresenter, tournamentRepo);
         TournamentQueryUseCase queryUseCase = new TournamentQueryUseCase(tournamentRepo);
+        ViewDojoRankingInputBoundary rankingUseCase = new ViewDojoRankingUseCase(rankingPresenter, tournamentRepo, fighterRepo);
 
         // 4. Controller
         TournamentController tournamentController = new TournamentController(tournamentUseCase);
@@ -52,6 +54,7 @@ public class Main {
         ViewBracketController bracketController = new ViewBracketController(bracketUseCase);
         DeleteTournamentController deleteController = new DeleteTournamentController(deleteUseCase);
         TournamentQueryController queryController = new TournamentQueryController(queryUseCase);
+        ViewDojoRankingController rankingController = new ViewDojoRankingController(rankingUseCase);
 
 
         // 5. Router
@@ -63,7 +66,7 @@ public class Main {
         );
         ConsoleRouter router = new ConsoleRouter(
                 tournamentController, fighterController, deleteController,
-                queryController, managementRouter
+                queryController, managementRouter, rankingController
         );
         router.start();
     }

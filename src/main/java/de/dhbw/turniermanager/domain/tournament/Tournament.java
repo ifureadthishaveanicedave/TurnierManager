@@ -40,6 +40,19 @@ public class Tournament {
         return matches;
     }
 
+    public List<Match> getAllMatches() {
+        List<Match> all = new ArrayList<>();
+        if (this.previousRounds != null) {
+            for (List<Match> round : this.previousRounds) {
+                all.addAll(round);
+            }
+        }
+        if (this.matches != null) {
+            all.addAll(this.matches);
+        }
+        return all;
+    }
+
     public void generateMatches() {
         if (!this.matches.isEmpty() || !this.previousRounds.isEmpty()) {
             throw new IllegalStateException("Das Turnier hat bereits begonnen. Aktuelle Kämpfe können nicht überschrieben werden.");
