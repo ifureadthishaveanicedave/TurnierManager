@@ -15,8 +15,13 @@ public class CreateTournamentUseCase implements TournamentInputBoundary {
     }
 
     @Override
-    public void createTournament(String name) {
-        Tournament tournament = new Tournament(name);
+    public void createTournament(String name, String weightClass) {
+        boolean exists = repository.findAll().stream().anyMatch(t -> t.getName().equals(name));
+        if (exists) {
+            outputBoundary.presentError("Ein Turnier mit dem Namen '" + name + "' existiert bereits.");
+            return;
+        }
+        Tournament tournament = new Tournament(name, weightClass);
         repository.save(tournament);
         outputBoundary.presentTournamentCreated(tournament.getName());
     }

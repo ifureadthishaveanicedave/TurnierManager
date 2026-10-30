@@ -15,9 +15,9 @@ public class AddFighterUseCase implements FighterInputBoundary {
     }
 
     @Override
-    public void addFighter(String name, String dojo) {
-        Fighter fighter = new Fighter(name, dojo);
-        repository.save(fighter); // Echte Persistenz
+    public void addFighter(String name, String dojo, String weightClass) {
+        Fighter fighter = new Fighter(name, dojo, weightClass);
+        repository.save(fighter);
         outputBoundary.presentFighterAdded(fighter.getName(), fighter.getDojo());
     }
 }

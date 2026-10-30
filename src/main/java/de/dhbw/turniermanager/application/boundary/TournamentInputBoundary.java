@@ -1,5 +1,5 @@
 package de.dhbw.turniermanager.application.boundary;
 
 public interface TournamentInputBoundary {
-    void createTournament(String name);
+    void createTournament(String name, String weightClass);
 }

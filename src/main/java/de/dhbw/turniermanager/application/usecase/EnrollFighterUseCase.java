@@ -2,6 +2,7 @@ package de.dhbw.turniermanager.application.usecase;
 
 import de.dhbw.turniermanager.application.boundary.EnrollFighterInputBoundary;
 import de.dhbw.turniermanager.application.boundary.EnrollFighterOutputBoundary;
+import de.dhbw.turniermanager.domain.fighter.Fighter;
 import de.dhbw.turniermanager.domain.repository.FighterRepository;
 import de.dhbw.turniermanager.domain.repository.TournamentRepository;
 import de.dhbw.turniermanager.domain.tournament.Tournament;
@@ -24,9 +25,9 @@ public class EnrollFighterUseCase implements EnrollFighterInputBoundary {
     @Override
     public void enrollFighter(String tournamentName, String fighterName) {
         Tournament tournament = tournamentRepo.findAll().stream()
-                .filter(t -> t.getName().equals(tournamentName))
-                .findFirst()
-                .orElse(null);
+                .filter(t -> t.getName().equals(tournamentName)).findFirst().orElse(null);
+        Fighter fighter = fighterRepo.findAll().stream()
+                .filter(f -> f.getName().equals(fighterName)).findFirst().orElse(null);
 
         if (tournament == null) {
             outputBoundary.presentError("Turnier '" + tournamentName + "' existiert nicht.");
@@ -38,6 +39,12 @@ public class EnrollFighterUseCase implements EnrollFighterInputBoundary {
 
         if (!fighterExists) {
             outputBoundary.presentError("Kämpfer '" + fighterName + "' existiert nicht.");
+            return;
+        }
+
+        if (!tournament.getWeightClass().equalsIgnoreCase("Offen")
+                && !tournament.getWeightClass().equalsIgnoreCase(fighter.getWeightClass())) {
+            outputBoundary.presentError("Gewichtsklasse passt nicht! Turnier: " + tournament.getWeightClass() + ", Kämpfer: " + fighter.getWeightClass());
             return;
         }
 

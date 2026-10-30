@@ -36,8 +36,8 @@ public class Main {
         GenerateMatchesInputBoundary matchUseCase = new GenerateMatchesUseCase(matchPresenter, tournamentRepo);
         RecordMatchResultInputBoundary recordUseCase = new RecordMatchResultUseCase(recordPresenter, tournamentRepo);
         AdvanceRoundInputBoundary advanceUseCase = new AdvanceRoundUseCase(advancePresenter, tournamentRepo);
-        ViewMatchesInputBoundary viewMatchesUseCase = new ViewMatchesUseCase(viewMatchesPresenter, tournamentRepo);
-        ViewBracketInputBoundary bracketUseCase = new ViewBracketUseCase(bracketPresenter, tournamentRepo);
+        ViewMatchesInputBoundary viewMatchesUseCase = new ViewMatchesUseCase(viewMatchesPresenter, tournamentRepo, fighterRepo);
+        ViewBracketInputBoundary bracketUseCase = new ViewBracketUseCase(bracketPresenter, tournamentRepo, fighterRepo);
         DeleteTournamentInputBoundary deleteUseCase = new DeleteTournamentUseCase(deletePresenter, tournamentRepo);
         TournamentQueryUseCase queryUseCase = new TournamentQueryUseCase(tournamentRepo);
         ViewDojoRankingInputBoundary rankingUseCase = new ViewDojoRankingUseCase(rankingPresenter, tournamentRepo, fighterRepo);

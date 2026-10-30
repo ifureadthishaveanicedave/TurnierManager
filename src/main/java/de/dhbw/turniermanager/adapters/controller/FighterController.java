@@ -9,11 +9,11 @@ public class FighterController {
         this.inputBoundary = inputBoundary;
     }
 
-    public void handleAddFighter(String name, String dojo) {
-        if (name == null || name.trim().isEmpty() || dojo == null || dojo.trim().isEmpty()) {
-            System.out.println("Name und Team dürfen nicht leer sein.");
+    public void handleAddFighter(String name, String dojo, String weightClass) {
+        if (name == null || name.trim().isEmpty() || dojo == null || dojo.trim().isEmpty() || weightClass == null || weightClass.trim().isEmpty()) {
+            System.out.println("Name, Team und Gewichtsklasse dürfen nicht leer sein.");
             return;
         }
-        inputBoundary.addFighter(name, dojo);
+        inputBoundary.addFighter(name, dojo, weightClass);
     }
 }

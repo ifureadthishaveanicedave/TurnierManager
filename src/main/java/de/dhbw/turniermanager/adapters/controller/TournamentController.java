@@ -9,11 +9,11 @@ public class TournamentController {
         this.inputBoundary = inputBoundary;
     }
 
-    public void handleCreateTournament(String name) {
-        if (name == null || name.trim().isEmpty()) {
-            System.out.println("[Der Turniername darf nicht leer sein.");
+    public void handleCreateTournament(String name, String weightClass) {
+        if (name == null || name.trim().isEmpty() || weightClass == null || weightClass.trim().isEmpty()) {
+            System.out.println("[Der Turniername, die Gewichtsklasse darf nicht leer sein.");
             return;
         }
-        inputBoundary.createTournament(name);
+        inputBoundary.createTournament(name, weightClass);
     }
 }

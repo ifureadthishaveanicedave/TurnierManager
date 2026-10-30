@@ -45,14 +45,18 @@ public class ConsoleRouter {
                 case "1":
                     System.out.print("Turniername eingeben: ");
                     String name = scanner.nextLine();
-                    tournamentController.handleCreateTournament(name);
+                    System.out.print("Gewichtsklasse (Enter für 'Offen'): ");
+                    String tWeight = scanner.nextLine();
+                    tournamentController.handleCreateTournament(name, tWeight);
                     break;
                 case "2":
                     System.out.print("Name des Kämpfers: ");
                     String fighterName = scanner.nextLine();
                     System.out.print("Name des Teams/Dojos: ");
                     String dojo = scanner.nextLine();
-                    fighterController.handleAddFighter(fighterName, dojo);
+                    System.out.print("Gewichtsklasse (Enter für 'Offen'): ");
+                    String fWeight = scanner.nextLine();
+                    fighterController.handleAddFighter(fighterName, dojo, fWeight);
                     break;
                 case "3":
                     System.out.print("Name des Turniers: ");

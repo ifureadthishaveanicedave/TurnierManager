@@ -9,24 +9,29 @@ public class Tournament {
     private List<String> registeredFighters;
     private List<Match> matches;
     private List<List<Match>> previousRounds = new ArrayList<>();
+    private String weightClass = "Offen";
 
-    public Tournament() {
+    public Tournament(String name, String weightClass) {
+        this.name = name;
+        this.weightClass = (weightClass == null || weightClass.trim().isEmpty()) ? "Offen" : weightClass;
         this.registeredFighters = new ArrayList<>();
         this.matches = new ArrayList<>();
         this.previousRounds = new ArrayList<>();
+    }
+    public Tournament() {
     }
 
     public Tournament(String name) {
         this.name = name;
         this.registeredFighters = new ArrayList<>();
         this.matches = new ArrayList<>();
+        this.weightClass = "Offen";
     }
 
     public String getName() {
         return name;
     }
 
-    //methode für ausgsbe später
     public List<String> getRegisteredFighters() {
         return registeredFighters;
     }
@@ -105,4 +110,8 @@ public class Tournament {
     public List<List<Match>> getPreviousRounds() {
         return previousRounds;
     }
+
+    public String getWeightClass() { return weightClass; }
+
+    public void setWeightClass(String weightClass) { this.weightClass = weightClass; }
 }
