@@ -54,7 +54,7 @@ public class ConsoleRouter {
                     String fighterName = scanner.nextLine();
                     System.out.print("Name des Teams/Dojos: ");
                     String dojo = scanner.nextLine();
-                    System.out.print("Gewichtsklasse (Enter für 'Offen'): ");
+                    System.out.print("Gewichtsklasse(Feder, Mittel, Schwer, Offen)");
                     String fWeight = scanner.nextLine();
                     fighterController.handleAddFighter(fighterName, dojo, fWeight);
                     break;
